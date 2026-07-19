@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "functions": {
+    "api/**/*.js": {
+      "includeFiles": "{dist/**,node_modules/.prisma/client/**,node_modules/@prisma/engines/**}"
+    }
+  },
+  "headers": [
+    {
+      "source": "/uploads/(.*)",
+      "headers": [
+        { "key": "Cross-Origin-Resource-Policy", "value": "cross-origin" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "methods": ["OPTIONS"],
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,POST,PUT,PATCH,DELETE,OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization, Accept, x-tenant-id, x-branch-id, x-branch-scope",
+        "Access-Control-Allow-Credentials": "false",
+        "Vary": "Origin"
+      },
+      "status": 204,
+      "continue": false
+    },
+    {
+      "src": "/api/test",
+      "dest": "/api/test.ts"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.js"
+    }
+  ]
+}

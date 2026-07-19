@@ -1,0 +1,4 @@
+ALTER TABLE "tenants"
+  ADD COLUMN IF NOT EXISTS "work_location_lat" DECIMAL(65,30),
+  ADD COLUMN IF NOT EXISTS "work_location_lng" DECIMAL(65,30),
+  ADD COLUMN IF NOT EXISTS "geofence_radius" INTEGER DEFAULT 100;
